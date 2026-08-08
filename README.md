@@ -17,3 +17,12 @@ MIDI routing and `InputAPI` are not part of this package.
 
 The public path and namespace carry API version `v1`. The package manifest
 version is independent and follows normal semantic-version release rules.
+
+Logical input IDs and their ordered control layout are stable product API.
+Board wiring in this package is the compiled safe default; a future validated
+wiring-profile override may replace physical routing at boot, but must never
+renumber those logical IDs or add work to the real-time input loop.
+
+Run `pio run -e dev` from a complete `ms-dev-env` workspace for local
+qualification. CI uses `pio run -e release` with commit-pinned OpenControl
+dependencies so this repository remains independently buildable.

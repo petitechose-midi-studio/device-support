@@ -3,12 +3,20 @@
 
 #include <lv_conf.h>
 #include <ms/device_support/v1/Buffers.hpp>
+#include <ms/device_support/v1/ControlLayout.hpp>
 #include <ms/device_support/v1/Hardware.hpp>
 #include <ms/device_support/v1/InputConfig.hpp>
 #include <ms/device_support/v1/LvglMemory.hpp>
 #include <ms/device_support/v1/Version.hpp>
 
 namespace device = ms::device_support::v1;
+
+static_assert(device::control::MACRO_ENCODERS.size() == 8);
+static_assert(device::control::MACRO_BUTTONS.size() == 8);
+static_assert(device::control::MACRO_ENCODERS.front() == device::EncoderID::MACRO_1);
+static_assert(device::control::MACRO_ENCODERS.back() == device::EncoderID::MACRO_8);
+static_assert(device::control::MACRO_BUTTONS.front() == device::ButtonID::MACRO_1);
+static_assert(device::control::MACRO_BUTTONS.back() == device::ButtonID::MACRO_8);
 
 void setup() {
     using Provider = std::uint8_t* (*)(std::size_t);
