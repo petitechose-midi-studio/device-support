@@ -7,9 +7,9 @@ namespace ms::device_support::v1::timing {
 inline constexpr std::uint32_t INPUT_APP_ADMISSION_HZ = 1'920;
 inline constexpr std::uint32_t LVGL_SERVICE_HZ = 240;
 inline constexpr std::uint8_t MUSICAL_REALTIME_IRQ_PRIORITY = 128;
-// Retained projections share LVGL's service cadence. They remain dormant when
-// clean, while the asynchronous display driver and panel bound physical frames.
-inline constexpr std::uint32_t UI_FRAME_SERVICE_DIVISOR = 1U;
+// Retained projections remain dormant when clean and are admitted every second
+// LVGL service pass, preserving one shared 120 Hz rendering budget.
+inline constexpr std::uint32_t UI_FRAME_SERVICE_DIVISOR = 2U;
 inline constexpr std::uint32_t UI_FRAME_HZ =
     LVGL_SERVICE_HZ / UI_FRAME_SERVICE_DIVISOR;
 
