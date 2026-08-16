@@ -18,6 +18,7 @@ inline constexpr std::uint32_t PHYSICAL_REFRESH_TARGET_HZ = 0;
 
 static_assert(timing::LVGL_SERVICE_HZ > 0);
 static_assert(timing::LVGL_SERVICE_HZ % VSYNC_SPACING == 0);
+static_assert(timing::UI_FRAME_HZ > 0);
 static_assert(VSYNC_SPACING > 0);
 
 inline constexpr oc::hal::teensy::Ili9341Config CONFIG{
@@ -46,7 +47,7 @@ inline constexpr std::size_t DIFF_BUFFER_SIZE_BYTES = 16'384;
 inline constexpr oc::ui::lvgl::BridgeConfig LVGL_CONFIG{
     LV_DISPLAY_RENDER_MODE_DIRECT,
     nullptr,
-    timing::LVGL_SERVICE_HZ,
+    timing::UI_FRAME_HZ,
     {},
 };
 
