@@ -12,11 +12,13 @@ namespace ms::device_support::v1::display {
 
 inline constexpr std::uint8_t VSYNC_SPACING = 1;
 inline constexpr std::uint32_t SPI_SPEED_HZ = 50'000'000;
+// Zero keeps ILI9341_T4's calibrated fastest panel mode. The exact physical
+// rate varies by panel and is reported by the runtime driver.
+inline constexpr std::uint32_t PHYSICAL_REFRESH_TARGET_HZ = 0;
 
 static_assert(timing::LVGL_SERVICE_HZ > 0);
 static_assert(timing::LVGL_SERVICE_HZ % VSYNC_SPACING == 0);
-static_assert(
-    timing::LVGL_SERVICE_HZ == timing::PHYSICAL_DISPLAY_REQUEST_HZ);
+static_assert(VSYNC_SPACING > 0);
 
 inline constexpr oc::hal::teensy::Ili9341Config CONFIG{
     320,
@@ -34,7 +36,7 @@ inline constexpr oc::hal::teensy::Ili9341Config CONFIG{
     4,
     128,
     0.2f,
-    timing::PHYSICAL_DISPLAY_REQUEST_HZ,
+    PHYSICAL_REFRESH_TARGET_HZ,
 };
 
 inline constexpr std::size_t FRAMEBUFFER_PIXEL_COUNT =
