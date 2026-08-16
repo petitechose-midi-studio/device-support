@@ -46,7 +46,7 @@ inline constexpr oc::hal::teensy::Ili9341Config CONFIG{
 
 inline constexpr std::size_t FRAMEBUFFER_PIXEL_COUNT =
     CONFIG.framebufferSize();
-inline constexpr std::size_t DIFF_BUFFER_SIZE_BYTES = 16'384;
+inline constexpr std::size_t DIFF_BUFFER_SIZE_BYTES = 8'192;
 
 inline constexpr oc::ui::lvgl::BridgeConfig LVGL_CONFIG{
     LV_DISPLAY_RENDER_MODE_DIRECT,
