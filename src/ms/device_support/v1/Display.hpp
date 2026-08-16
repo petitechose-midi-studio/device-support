@@ -12,6 +12,9 @@ namespace ms::device_support::v1::display {
 
 inline constexpr std::uint8_t VSYNC_SPACING = 1;
 inline constexpr std::uint32_t SPI_SPEED_HZ = 50'000'000;
+// Teensy IRQ priorities are inverse: lower values preempt higher values. Keep
+// display DMA below the 1 kHz musical timer without pushing it to the bottom.
+inline constexpr std::uint8_t IRQ_PRIORITY = 160;
 // Zero keeps ILI9341_T4's calibrated fastest panel mode. The exact physical
 // rate varies by panel and is reported by the runtime driver.
 inline constexpr std::uint32_t PHYSICAL_REFRESH_TARGET_HZ = 0;
@@ -20,6 +23,7 @@ static_assert(timing::LVGL_SERVICE_HZ > 0);
 static_assert(timing::LVGL_SERVICE_HZ % VSYNC_SPACING == 0);
 static_assert(timing::UI_FRAME_HZ > 0);
 static_assert(VSYNC_SPACING > 0);
+static_assert(timing::MUSICAL_REALTIME_IRQ_PRIORITY < IRQ_PRIORITY);
 
 inline constexpr oc::hal::teensy::Ili9341Config CONFIG{
     320,
@@ -35,7 +39,7 @@ inline constexpr oc::hal::teensy::Ili9341Config CONFIG{
     true,
     VSYNC_SPACING,
     4,
-    128,
+    IRQ_PRIORITY,
     0.2f,
     PHYSICAL_REFRESH_TARGET_HZ,
 };
