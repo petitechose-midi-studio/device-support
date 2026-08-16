@@ -16,9 +16,9 @@ inline constexpr std::uint16_t DIFF_GAP = 8;
 // Teensy IRQ priorities are inverse: lower values preempt higher values. Keep
 // display DMA below the 1 kHz musical timer without pushing it to the bottom.
 inline constexpr std::uint8_t IRQ_PRIORITY = 160;
-// Zero keeps ILI9341_T4's calibrated fastest panel mode. The exact physical
-// rate varies by panel and is reported by the runtime driver.
-inline constexpr std::uint32_t PHYSICAL_REFRESH_TARGET_HZ = 0;
+// Keep panel scanout and retained UI publication on the same cadence. The
+// driver selects the closest physical mode and reports the measured rate.
+inline constexpr std::uint32_t PHYSICAL_REFRESH_TARGET_HZ = timing::UI_FRAME_HZ;
 
 static_assert(timing::LVGL_SERVICE_HZ > 0);
 static_assert(timing::LVGL_SERVICE_HZ % VSYNC_SPACING == 0);
