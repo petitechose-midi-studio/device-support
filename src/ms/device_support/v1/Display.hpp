@@ -11,7 +11,7 @@
 namespace ms::device_support::v1::display {
 
 inline constexpr std::uint8_t VSYNC_SPACING = 1;
-inline constexpr std::uint32_t SPI_SPEED_HZ = 60'000'000;
+inline constexpr std::uint32_t SPI_SPEED_HZ = 50'000'000;
 inline constexpr std::uint16_t DIFF_GAP = 8;
 // Teensy IRQ priorities are inverse: lower values preempt higher values. Keep
 // display DMA below the 1 kHz musical timer without pushing it to the bottom.

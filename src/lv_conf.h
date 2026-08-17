@@ -3,7 +3,7 @@
  * @brief LVGL v9.x configuration for Teensy 4.1 + ILI9341
  *
  * Key settings:
- * - 4MB EXTMEM pool (PSRAM) - 8MB available
+ * - Product-configurable EXTMEM pool (4 MB conservative default)
  * - RGB565 color (16-bit)
  * - NO LV_DEF_REFR_PERIOD (set at runtime by Bridge)
  * - ARGB8888 enabled for transparency animations
@@ -14,11 +14,10 @@
 #ifndef LV_CONF_H
 #define LV_CONF_H
 
-// Memory: 4MB EXTMEM (PSRAM) - 8MB available on Teensy 4.1
+// Products can override the conservative shared default from their build flags.
 #ifndef MS_DEVICE_SUPPORT_LVGL_MEMORY_POOL_SIZE_BYTES
 #define MS_DEVICE_SUPPORT_LVGL_MEMORY_POOL_SIZE_BYTES 4096000U
 #endif
-#define LVGL_MEMORY_POOL_SIZE_KB 4000
 #define LVGL_MEMORY_POOL_SIZE MS_DEVICE_SUPPORT_LVGL_MEMORY_POOL_SIZE_BYTES
 
 #define LV_COLOR_DEPTH 16
