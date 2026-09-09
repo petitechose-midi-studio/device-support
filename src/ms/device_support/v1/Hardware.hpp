@@ -33,6 +33,7 @@ using oc::hal::common::embedded::EncoderDef;
 inline constexpr std::uint16_t PPR = 24;
 inline constexpr std::uint16_t RANGE = 270;
 inline constexpr std::uint8_t TICKS = 1;
+inline constexpr std::uint8_t OPT_TICKS_PER_EVENT = 100;
 inline constexpr bool INVERT = true;
 
 inline constexpr std::array<EncoderDef, 10> ENCODERS{
@@ -45,7 +46,7 @@ inline constexpr std::array<EncoderDef, 10> ENCODERS{
     EncoderDef(EncoderID::MACRO_7, 14, 15, PPR, RANGE, TICKS, INVERT),
     EncoderDef(EncoderID::MACRO_8, 38, 39, PPR, RANGE, TICKS, INVERT),
     EncoderDef(EncoderID::NAV, 31, 30, 24, 270, 4, !INVERT),
-    EncoderDef(EncoderID::OPT, 34, 33, 600, 270, 1, INVERT),
+    EncoderDef(EncoderID::OPT, 34, 33, 600, 270, OPT_TICKS_PER_EVENT, INVERT),
 };
 
 }  // namespace encoder
